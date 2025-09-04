@@ -7,7 +7,7 @@ import Link from "next/link";
 function page() {
   return (
     <>
-      <div className={`w-full h-auto overflow-hidden flex flex-col justify-start items-center pb-5 relative scroll-bar`}>
+      <div className={`w-full h-auto overflow-hidden flex flex-col justify-start items-center pb-5 bg-white relative scroll-bar`}>
 
         {/* hero section */}
         <div className={`w-full h-screen flex flex-col justify-start items-center relative overflow-hidden scroll-bar rounded-b-3xl`}>
@@ -51,7 +51,7 @@ function page() {
         {/* intro section */}
         <div className={`w-full flex flex-col justify-start items-center h-auto pt-7 pb-12`}>
           <img src="/assets/logo-round.png" className={`h-32 lg:h-40 hover:rotate-[360deg] duration-300 ease-in-out cursor-pointer`} />
-          <p className={`w-full text-center mt-2 px-5 sm:px-10 md:px-24 font-dhyana text-[10px] md:text-sm leading-8`}>Moments for Mother Earth is more than just a website; it’s a living community. We believe that every action, no matter how small, can create a ripple of positive change. Our platform connects passionate individuals, environmental groups, and local communities to share their stories, organize events, and inspire a global movement. Whether you're planting a single tree, organizing a large-scale clean-up, or sharing your knowledge, your moments here will help create a healthier, more vibrant planet for all.</p>
+          <p className={`w-full text-black text-center mt-2 px-5 sm:px-10 md:px-24 font-dhyana text-[10px] md:text-sm leading-8`}>Moments for Mother Earth is more than just a website; it’s a living community. We believe that every action, no matter how small, can create a ripple of positive change. Our platform connects passionate individuals, environmental groups, and local communities to share their stories, organize events, and inspire a global movement. Whether you're planting a single tree, organizing a large-scale clean-up, or sharing your knowledge, your moments here will help create a healthier, more vibrant planet for all.</p>
         </div>
 
         {/* ribbon */}
@@ -77,7 +77,7 @@ function page() {
           <div className={`w-full flex flex-col py-5 justify-start items-center`}>
             <div className={`w-full flex flex-col justify-center items-start`}>
               <h1 className={`w-full text-start font-cinzel text-xl md:text-2xl lg:text-3xl font-semibold text-black`}>SHARE THOUGHTS</h1>
-              <p className={`w-full mt-3 lg:leading-8 mb-5 text-start font-dhyana text-[10px] md:text-sm `}>This is your space to share your journey and inspire others. From personal stories and tips for sustainable living to in-depth articles on environmental issues, your blog is a powerful tool for change. Create an account to easily publish, edit, and manage your posts, and connect with a community that shares your passion.</p>
+              <p className={`w-full mt-3 lg:leading-8 mb-5 text-start text-black font-dhyana text-[10px] md:text-sm `}>This is your space to share your journey and inspire others. From personal stories and tips for sustainable living to in-depth articles on environmental issues, your blog is a powerful tool for change. Create an account to easily publish, edit, and manage your posts, and connect with a community that shares your passion.</p>
             </div>
             <div className={`w-full mt-5 flex justify-between items-center gap-3`}>
               <div className={`w-[60%] rounded-xl overflow-hidden h-44 md:h-56 xl:h-60`}>

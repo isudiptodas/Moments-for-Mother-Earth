@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/context/ThemeContext"
 
 export const metadata: Metadata = {
   title: "Moments For Mother Earth",
@@ -15,8 +16,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Toaster position="top-center" richColors/>
-        {children}
+        <Toaster position="top-center" richColors />
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

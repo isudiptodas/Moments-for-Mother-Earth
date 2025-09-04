@@ -115,7 +115,8 @@ export async function POST(req: NextRequest) {
                 secure: false,
                 httpOnly: true,
                 sameSite: 'lax',
-                maxAge: 86400
+                maxAge: 86400,
+                path: '/'
             });
 
             return response;
@@ -135,6 +136,8 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
 
+    await connectDb();
+
     try {
         const secret = new TextEncoder().encode(process.env.JWT_SECRET as string);
         const jwt = req.cookies.get('token')?.value as string;
@@ -146,7 +149,8 @@ export async function GET(req: NextRequest) {
         if (found) {
             return NextResponse.json({
                 success: true,
-                message: `User verified`
+                message: `User verified`,
+                found
             }, { status: 200 });
         }
 
