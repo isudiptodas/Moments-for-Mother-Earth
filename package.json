@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
     "axios": "^1.11.0",
     "bcrypt": "^6.0.0",
+    "daisyui": "^5.1.6",
     "date-fns": "^4.1.0",
     "jose": "^6.1.0",
     "jsonwebtoken": "^9.0.2",
