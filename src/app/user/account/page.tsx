@@ -25,7 +25,8 @@ interface User {
 
 function page() {
 
-    const [verified, setVerified] = useState(true);
+    const [verified, setVerified] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const router = useRouter();
     const [name, setName] = useState<string | null | undefined>('');
     const [email, setEmail] = useState<string | null | undefined>('');
@@ -72,6 +73,12 @@ function page() {
     }, []);
 
     const updateProfile = async () => {
+
+        if (loadingMessage) {
+            toast.error("PLease wait ...");
+            return;
+        }
+
         if (!name || !email) {
             toast.error("Empty fields not allowed");
             return;
@@ -112,6 +119,12 @@ function page() {
     }
 
     const updatePassword = async () => {
+
+        if (passwordMessage) {
+            toast.error("PLease wait ...");
+            return;
+        }
+
         if (!password || !newPassword) {
             toast.error("Empty fields not allowed");
             return;
@@ -164,6 +177,12 @@ function page() {
     }, [imageBoxVisible]);
 
     const uploadImage = async () => {
+
+        if(uploading){
+            toast.error("Please wait ...");
+            return;
+        }
+
         if (!image) {
             toast.error("Select image");
             return;
@@ -171,6 +190,7 @@ function page() {
 
         const id = toast.loading("Uploading ...");
         try {
+            setUploading(true);
             const { data, error } = await supabase
                 .storage
                 .from('user_photo')
@@ -216,6 +236,7 @@ function page() {
         finally {
             toast.dismiss(id);
             setImageBoxVisible(false);
+            setUploading(false);
         }
     }
 
@@ -250,18 +271,18 @@ function page() {
                 toast.error("Something went wrong");
             }
         }
-        finally{
+        finally {
             toast.dismiss(id);
         }
     }
 
     const logout = async () => {
         try {
-            const res = await axios.post(`/api/user-account`,{},{
+            const res = await axios.post(`/api/user-account`, {}, {
                 withCredentials: true
             });
 
-            if(res.status === 201){
+            if (res.status === 201) {
                 router.push('/');
             }
         } catch (err) {

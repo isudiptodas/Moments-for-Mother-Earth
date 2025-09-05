@@ -3,6 +3,14 @@
 import { PiPlantLight } from "react-icons/pi";
 import Marquee from "react-fast-marquee";
 import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+} from "@/components/ui/accordion"
+import { faq } from "@/data/faq";
+import { PlusIcon } from "lucide-react"
+import { Accordion as AccordionPrimitive } from "radix-ui"
 
 function page() {
   return (
@@ -126,20 +134,43 @@ function page() {
 
         {/* get started */}
         <div className={`w-full justify-start items-center py-5 px-5 md:px-10 lg:px-24`}>
-            <h1 className={`w-full text-center font-cinzel text-xl md:text-2xl lg:text-3xl font-semibold text-black`}>READY TO GET STARTED ?</h1>
-            <p className={`w-full mt-3 lg:leading-8 mb-5 text-center font-dhyana text-black text-[10px] md:text-sm `}>Join our community today and be a part of something bigger.</p>
+          <h1 className={`w-full text-center font-cinzel text-xl md:text-2xl lg:text-3xl font-semibold text-black`}>READY TO GET STARTED ?</h1>
+          <p className={`w-full mt-3 lg:leading-8 mb-5 text-center font-dhyana text-black text-[10px] md:text-sm `}>Join our community today and be a part of something bigger.</p>
+        </div>
+        
+        {/* faq */}
+        <div className={`w-full mb-5 md:w-[60%] lg:w-[50%] px-8 overflow-hidden flex flex-col justify-start items-center`}>
+          <Accordion type="single" collapsible className="w-full">
+            {faq.map((item) => (
+              <AccordionItem value={item.id} key={item.id} className="py-2">
+                <AccordionPrimitive.Header className="flex">
+                  <AccordionPrimitive.Trigger className="focus-visible:border-ring cursor-pointer text-black focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md py-2 text-left text-sm text-[15px] leading-6 font-semibold transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&>svg>path:last-child]:origin-center [&>svg>path:last-child]:transition-all [&>svg>path:last-child]:duration-200 [&[data-state=open]>svg]:rotate-180 [&[data-state=open]>svg>path:last-child]:rotate-90 [&[data-state=open]>svg>path:last-child]:opacity-0">
+                    {item.title}
+                    <PlusIcon
+                      size={16}
+                      className="pointer-events-none shrink-0 opacity-60 transition-transform duration-200"
+                      aria-hidden="true"
+                    />
+                  </AccordionPrimitive.Trigger>
+                </AccordionPrimitive.Header>
+                <AccordionContent className="text-muted-foreground text-black pb-2">
+                  {item.content}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         {/* footer */}
         <div className={`w-full flex flex-col justify-start items-center pt-10 px-5 gap-4`}>
-            <img src="/assets/logo-black.png" className={`h-5 md:h-10`}/>
-            <div className={`w-full md:w-[80%] rounded-xl mt-5 py-10 bg-[#64b90a] grid grid-cols-2 lg:grid-cols-5 justify-items-center gap-4`}>
-                <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>ABOUT US</p>
-                <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>PRIVACY POLICY</p>
-                <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>TERMS OF USAGE</p>
-                <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>CONTACT US</p>
-                <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>DEVELOPER LOGIN</p>
-            </div>
+          <img src="/assets/logo-black.png" className={`h-5 md:h-10`} />
+          <div className={`w-full md:w-[80%] rounded-xl mt-5 py-10 bg-[#64b90a] grid grid-cols-2 lg:grid-cols-5 justify-items-center gap-4`}>
+            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>ABOUT US</p>
+            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>PRIVACY POLICY</p>
+            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>TERMS OF USAGE</p>
+            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>CONTACT US</p>
+            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>DEVELOPER LOGIN</p>
+          </div>
         </div>
       </div>
     </>
