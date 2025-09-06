@@ -67,6 +67,7 @@ function page() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [linkedIn, setLinkedIn] = useState('');
+    const[searchInput, setSearchInput] = useState('');
     const [medium, setMedium] = useState('');
     const [image, setImage] = useState<File | null>(null);
     const [createVisible, setCreateVisible] = useState(false);
@@ -95,6 +96,20 @@ function page() {
 
         verifyUser();
     }, []);
+
+    const search = () => {
+        if(!searchInput){
+            toast.error("Enter search query");
+            return;
+        }
+
+        const found = allBlogs.filter((blog) => {
+            return blog.title.includes(searchInput) || blog.content.includes(searchInput)
+        });
+
+        setFiltered(found);
+        setOption('results');
+    }
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -314,8 +329,8 @@ function page() {
                     {/* search bar */}
                     <div className={`w-full md:w-[70%] xl:w-[60%] mt-24 md:mt-32 h-auto flex justify-between items-center gap-2`}>
                         <div className={`w-full flex justify-center items-center relative`}>
-                            <input type="text" className={`w-full py-3 px-3 pr-8 ${dark ? "bg-zinc-700 text-white" : "bg-gray-200 text-black"} rounded-md outline-none font-dhyana text-sm`} placeholder="Enter search term" />
-                            <span className={`w-auto absolute right-5 top-1/2 ${dark ? "text-white" : "text-green-600"} text-xl -translate-y-1/2`}><IoIosSearch /></span>
+                            <input onChange={(e) => setSearchInput(e.target.value)} type="text" className={`w-full py-3 px-3 pr-8 ${dark ? "bg-zinc-700 text-white" : "bg-gray-200 text-black"} rounded-md outline-none font-dhyana text-sm`} placeholder="Enter search term" />
+                            <span onClick={search} className={`w-auto absolute cursor-pointer right-5 top-1/2 ${dark ? "text-white" : "text-green-600"} text-xl -translate-y-1/2`}><IoIosSearch /></span>
                         </div>
                         {/* <span className={`w-auto bg-gradient-to-r from-blue-500 to-blue-700 rounded-md md:hidden flex justify-center items-center cursor-pointer text-white active:opacity-80 duration-150 ease-in-out py-3 px-2`}><RiExpandUpDownFill /></span>
                         <span className={`w-auto bg-gradient-to-r from-blue-500 to-blue-700 rounded-md md:flex justify-center items-center cursor-pointer text-white active:opacity-80 duration-150 ease-in-out py-2 px-4 gap-2 hidden`}>Filter <RiExpandUpDownFill /></span> */}
@@ -334,38 +349,73 @@ function page() {
                         <span onClick={() => { setCreateVisible(true) }} className={`w-auto px-4 py-2 hidden md:flex justify-center items-center gap-3 text-sm bg-gradient-to-r from-blue-500 to-blue-800 text-white cursor-pointer active:opacity-80 duration-150 ease-in-out rounded-md`}>Create <CiEdit /></span>
                     </div>
 
-                    {option === 'all' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 py-4`}>
-                        {allBlogs && allBlogs.length > 0 && allBlogs.map((item, index) => {
+                    {option === 'all' && <div className={`w-full ${allBlogs.length > 9 ? "block" : "hidden"} z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
+                        
+                        <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>Latest This Week</p>
+                        {allBlogs && allBlogs.length > 9 && allBlogs.slice(0, 7).map((item, index) => {
                             return <div onClick={() => {
                                 router.push(`/user/blog/${item.uniqueId}`)
                             }} key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>
                                 <img src={item.imagePath} className={`w-full h-[70%] object-cover rounded-lg md:rounded-2xl`} />
-                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid odit nisi necessitatibus, minima</p>
+                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>{item.title}</p>
                             </div>
                         })}
                     </div>}
 
-                    {option === 'your' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 py-4`}>
+                    {option === 'all' && <div className={`w-full ${allBlogs.length > 0 ? "block" : "hidden"} z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
+                        
+                        <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>All</p>
+                        {allBlogs && allBlogs.length > 0 && allBlogs.slice(8).map((item, index) => {
+                            return <div onClick={() => {
+                                router.push(`/user/blog/${item.uniqueId}`)
+                            }} key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>
+                                <img src={item.imagePath} className={`w-full h-[70%] object-cover rounded-lg md:rounded-2xl`} />
+                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>{item.title}</p>
+                            </div>
+                        })}
+                    </div>}
+
+                    {option === 'your' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
+                        
+                        <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>Your Posts</p>
+
                         {filtered && filtered.length > 0 && filtered.map((item, index) => {
                             return <div key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>
                                 <img onClick={() => {
                                     router.push(`/user/blog/${item.uniqueId}`)
                                 }} src={item.imagePath} className={`w-full h-[60%] object-cover rounded-lg md:rounded-2xl`} />
-                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid odit nisi necessitatibus, minima</p>
+                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>{item.title}</p>
                                 <p onClick={() => { deleteBlog(item) }} className={`w-full text-center px-3 py-2 cursor-pointer font-dhyana font-semibold bg-red-500 text-white rounded-full text-[10px] sm:text-[12px] md:text-sm`}>Delete</p>
 
                             </div>
                         })}
                     </div>}
 
-                    {option === 'saved' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 py-4`}>
+                    {option === 'saved' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
+                        
+                        <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>Saved Blogs</p>
+
                         {savedBlogs && savedBlogs.length > 0 && savedBlogs.map((item, index) => {
                             return <div key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>
                                 <img onClick={() => {
                                     router.push(`/user/blog/${item.uniqueId}`)
                                 }} src={item.imagePath} className={`w-full h-[60%] object-cover rounded-lg md:rounded-2xl`} />
-                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid odit nisi necessitatibus, minima</p>
+                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>{item.title}</p>
                                 <p onClick={() => { removeFromSaved(item) }} className={`w-full text-center px-3 py-2 cursor-pointer font-dhyana font-semibold bg-red-500 text-white rounded-full text-[10px] sm:text-[12px] md:text-sm`}>Remove from saved</p>
+                            </div>
+                        })}
+                    </div>}
+
+                    {option === 'results' && <div className={`w-full z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
+                        
+                        <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>Results for "{searchInput}"</p>
+
+                        {filtered && filtered.length > 0 && filtered.map((item, index) => {
+                            return <div key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>
+                                <img onClick={() => {
+                                    router.push(`/user/blog/${item.uniqueId}`)
+                                }} src={item.imagePath} className={`w-full h-[60%] object-cover rounded-lg md:rounded-2xl`} />
+                                <p className={`w-full px-3 font-dhyana text-start text-[10px] sm:text-[12px] md:text-sm`}>{item.title}</p>
                             </div>
                         })}
                     </div>}

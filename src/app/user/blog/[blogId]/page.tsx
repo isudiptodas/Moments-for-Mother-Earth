@@ -148,7 +148,7 @@ function page() {
                                 }} className={`w-auto text-[10px cursor-pointer] p-2 ${blogData?.medium ? "block" : "hidden"} rounded-full ${dark ? "bg-white text-black" : "bg-zinc-600 text-white"} duration-150 ease-in-out`}><FaMedium /></span>
                             </div>
                         </div>
-                        <p onClick={saveBlog} className={`w-full ${blogData?.savedBy ? "hidden" : "block"} cursor-pointer active:bg-blue-800 duration-150 ease-in-out rounded-md mt-4 py-2 text-center bg-blue-500 text-white flex justify-center items-center gap-2`}>Save <FaBookmark /></p>
+                        <p onClick={saveBlog} className={`w-full ${blogData?.userEmail === email ? "hidden" : "block"} cursor-pointer active:bg-blue-800 duration-150 ease-in-out rounded-md mt-4 py-2 text-center bg-blue-500 text-white flex justify-center items-center gap-2`}>Save <FaBookmark /></p>
                     </div>
                 </div>
             </div>

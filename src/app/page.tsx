@@ -15,7 +15,7 @@ import { Accordion as AccordionPrimitive } from "radix-ui"
 function page() {
   return (
     <>
-      <div className={`w-full h-auto overflow-hidden flex flex-col justify-start items-center pb-5 bg-white relative scroll-bar`}>
+      <div className={`w-full h-auto overflow-hidden flex flex-col justify-start items-center bg-white relative scroll-bar`}>
 
         {/* hero section */}
         <div className={`w-full h-screen flex flex-col justify-start items-center relative overflow-hidden scroll-bar rounded-b-3xl`}>
@@ -137,7 +137,7 @@ function page() {
           <h1 className={`w-full text-center font-cinzel text-xl md:text-2xl lg:text-3xl font-semibold text-black`}>READY TO GET STARTED ?</h1>
           <p className={`w-full mt-3 lg:leading-8 mb-5 text-center font-dhyana text-black text-[10px] md:text-sm `}>Join our community today and be a part of something bigger.</p>
         </div>
-        
+
         {/* faq */}
         <div className={`w-full mb-5 md:w-[60%] lg:w-[50%] px-8 overflow-hidden flex flex-col justify-start items-center`}>
           <Accordion type="single" collapsible className="w-full">
@@ -162,16 +162,18 @@ function page() {
         </div>
 
         {/* footer */}
-        <div className={`w-full flex flex-col justify-start items-center pt-10 px-5 gap-4`}>
-          <img src="/assets/logo-black.png" className={`h-5 md:h-10`} />
-          <div className={`w-full md:w-[80%] rounded-xl mt-5 py-10 bg-[#64b90a] grid grid-cols-2 lg:grid-cols-5 justify-items-center gap-4`}>
-            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>ABOUT US</p>
-            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>PRIVACY POLICY</p>
-            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>TERMS OF USAGE</p>
-            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>CONTACT US</p>
-            <p className={`w-auto font-cinzel text-[12px] text-white cursor-pointer`}>DEVELOPER LOGIN</p>
-          </div>
+        <div className={`w-full md:w-[60%] h-auto pt-10 grid grid-cols-3 md:grid-cols-6 justify-items-center gap-4`}>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>About</Link>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Privacy</Link>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Terms</Link>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Contact</Link>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Developer</Link>
+          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Services</Link>
         </div>
+        <div className={`w-full h-auto flex justify-center items-center overflow-hidden`}>
+          <img src="/assets/footer.jpg" className={`w-full z-10`} />
+        </div>
+
       </div>
     </>
   )
