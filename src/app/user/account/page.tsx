@@ -101,9 +101,7 @@ function page() {
             if (res.status === 200) {
                 toast.success("Profile Updated");
                 setLoadingMessage('');
-                setTimeout(() => {
-                    router.push('/user/dashboard');
-                }, 1500);
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -147,9 +145,7 @@ function page() {
             if (res.status === 200) {
                 setPasswordMessage('');
                 toast.success("Password Changed");
-                setTimeout(() => {
-                    router.push('/user/dashboard');
-                }, 1500);
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -220,9 +216,7 @@ function page() {
                 toast.dismiss(id);
                 toast.success("Profile Photo Updated");
                 setImage(null);
-                setTimeout(() => {
-                    router.push('/user/dashboard')
-                }, 1500);
+                router.refresh();
             }
         }
         catch (err: any) {
@@ -258,9 +252,7 @@ function page() {
                 if (res.status === 200) {
                     toast.success("Profile photo removed");
                     toast.dismiss(id);
-                    setTimeout(() => {
-                        router.push('/user/dashboard');
-                    }, 1500);
+                    router.refresh();
                 }
             }
         } catch (err: any) {

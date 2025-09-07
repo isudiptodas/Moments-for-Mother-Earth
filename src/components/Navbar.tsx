@@ -31,16 +31,16 @@ function Navbar({ path }: { path: string }) {
           />
         </div>
 
-        <div className={`w-auto z-40 hidden md:flex justify-center items-center gap-4 xl:gap-6`}>
-          <Link href='/user/dashboard' className={`w-auto ${dark ? "text-white" : "text-black"} py-2 px-3 ${path === '/user/dashboard' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Home</Link>
-          <Link href='/user/blog' className={`w-auto ${dark ? "text-white" : "text-black"} py-2 px-3 ${path === '/user/blog' || path.includes("/user/blog") ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Blog</Link>
-          <Link href='/user/podcast' className={`w-auto ${dark ? "text-white" : "text-black"} py-2 px-3 ${path === '/user/podcast' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Podcast</Link>
-          <Link href='/user/events' className={`w-auto ${dark ? "text-white" : "text-black"} py-2 px-3 ${path === '/user/events' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Events</Link>
+        <div className={`w-auto px-1 py-1 rounded-full border-[1px] border-gray-500 z-40 hidden md:flex justify-center items-center gap-4 xl:gap-6`}>
+          <Link href='/user/dashboard' className={`w-auto ${dark ? "text-white" : "text-black"} py-1 px-3 ${path === '/user/dashboard' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Home</Link>
+          <Link href='/user/blog' className={`w-auto ${dark ? "text-white" : "text-black"} py-1 px-3 ${path === '/user/blog' || path.includes("/user/blog") ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Blog</Link>
+          <Link href='/user/podcast' className={`w-auto ${dark ? "text-white" : "text-black"} py-1 px-3 ${path === '/user/podcast' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Podcast</Link>
+          <Link href='/user/events' className={`w-auto ${dark ? "text-white" : "text-black"} py-1 px-3 ${path === '/user/events' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat`}>Events</Link>
           {/* <Link href='/user/donate' className={`w-auto ${dark ? "text-white" : "text-black"} py-2 ${path === '/user/donate' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} shrink-0 text-sm xl:text-lg font-montserrat flex justify-center items-center gap-2`}>Donate <span className={`opacity-50 text-[10px] xl:text-sm`}>Beta</span></Link> */}
+          <Link href='/user/account' className={`w-auto ${path === '/user/account' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} py-1 px-3 ${dark ? "text-white" : "text-black"} shrink-0 text-sm xl:text-lg font-montserrat`}>Account</Link>
         </div>
 
         <div className={`w-auto z-40 hidden md:flex justify-center items-center gap-5`}>
-          <Link href='/user/account' className={`w-auto ${path === '/user/account' ? "bg-gradient-to-r from-teal-400 to-green-700 rounded-full px-5 font-semibold text-white" : ""} py-2 ${dark ? "text-white" : "text-black"} shrink-0 text-sm xl:text-lg font-montserrat`}>Account</Link>
           <input
             onChange={(e) => { setDark(!dark) }}
             type="checkbox"

@@ -131,6 +131,7 @@ function page() {
                 setLink("");
                 setImage(null);
                 setLoadingMessage("");
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -181,6 +182,7 @@ function page() {
 
             if(res.status === 200){
                 toast.success("Podcast deleted");
+                router.refresh();
             }
         }
         catch (err: any) {
@@ -266,19 +268,19 @@ function page() {
                         <input onChange={(e) => setTitle(e.target.value)} type="text" className={`w-full px-3 py-2 rounded-md ${dark ? "bg-zinc-500 text-white" : "bg-gray-200 text-black"} font-montserrat text-[12px] md:text-sm outline-none`} placeholder="Enter title" />
                         <textarea onChange={(e) => setDescription(e.target.value)} className={`w-full px-3 py-2 h-44 md:h-36 mt-3 rounded-md ${dark ? "bg-zinc-500 text-white" : "bg-gray-200 text-black"} font-montserrat text-[12px] md:text-sm outline-none`} placeholder="Enter description (max 300 characters)" />
                         <input onChange={(e) => setLink(e.target.value)} type="text" className={`w-full mt-3 px-3 py-2 rounded-md ${dark ? "bg-zinc-500 text-white" : "bg-gray-200 text-black"} font-montserrat text-[12px] md:text-sm outline-none`} placeholder="Enter link" />
-                        <p onClick={publishPodcast} className={`w-full cursor-pointer active:opacity-75 text-center mt-3 py-3 rounded-full bg-gradient-to-r from-teal-500 to-green-800 text-white font-montserrat text-[12px] d:text-sm duration-150 ease-in-out`}>{loadingMessage ? loadingMessage : "Publish"}</p>
+                        <p onClick={publishPodcast} className={`w-full cursor-pointer active:opacity-75 text-center mt-3 py-3 rounded-full bg-gradient-to-r from-teal-500 to-green-800 text-white font-montserrat text-[12px] d:text-sm duration-150 ease-in-out`}>{loadingMessage ? (<><span>{loadingMessage}</span><span className="ml-2 loading loading-spinner loading-sm"></span></>) : ("Publish")}</p>
                     </div>
                 </div>
 
                 <div className={`w-full pb-10 mt-5 px-5 md:px-10 flex flex-col justify-start items-start`}>
 
-                    <div className={`w-full flex justify-start items-start gap-3 py-4`}>
+                    <div className={`w-full flex justify-center md:justify-start items-start gap-3 py-4`}>
                         <span onClick={() => {
                             setPublishVisible(true);
-                        }} className={`w-auto px-3 py-2 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white font-montserrat text-[12px] md:text-sm active:opacity-80 duration-150 ease-in-out cursor-pointer flex justify-center items-center gap-2`}>Publish <MdPublish /></span>
+                        }} className={`w-1/2 md:w-auto px-3 md:px-7 py-5 rounded-md bg-gradient-to-r from-blue-500 to-blue-700 text-white font-montserrat text-[12px] md:text-sm active:opacity-80 duration-150 ease-in-out cursor-pointer flex justify-center items-center gap-2`}>Publish <MdPublish /></span>
                         <span onClick={() => {
                             setOption('your');
-                        }} className={`w-auto px-3 py-2 rounded-md bg-gradient-to-r from-fuchsia-600 to-fuchsia-800 text-white font-montserrat text-[12px] md:text-sm active:opacity-80 duration-150 ease-in-out cursor-pointer flex justify-center items-center gap-2`}>Your Post <MdOutlineEditNote /></span>
+                        }} className={`w-1/2 md:w-auto px-3 md:px-7 py-5 rounded-md bg-gradient-to-r from-fuchsia-600 to-fuchsia-800 text-white font-montserrat text-[12px] md:text-sm active:opacity-80 duration-150 ease-in-out cursor-pointer flex justify-center items-center gap-2`}>Your Post <MdOutlineEditNote /></span>
                     </div>
 
                     <h1 className={`w-full text-start ${allPodcast.length > 7 ? "block" : "hidden"} py-3 font-semibold font-montserrat text-lg ${dark ? "text-white" : "text-black"} duration-150 ease-in-out`}>Explore Weekly Top</h1>

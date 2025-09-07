@@ -228,6 +228,7 @@ function page() {
                 setLinkedIn("");
                 setMedium("");
                 setCreateVisible(false);
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -250,6 +251,7 @@ function page() {
 
             if (res.status === 200) {
                 toast.success("Removed");
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -269,6 +271,7 @@ function page() {
 
             if (res.status === 200) {
                 toast.success("Blog Deleted");
+                router.refresh();
             }
         } catch (err: any) {
             if (err?.response && err?.response?.data?.message) {
@@ -316,7 +319,7 @@ function page() {
                             <textarea onChange={(e) => setContent(e.target.value)} className={`w-full py-3 px-3 h-48 outline-none rounded-md ${dark ? "bg-zinc-700 text-white placeholder-gray-400" : "bg-gray-200 text-black placeholder-gray-600"} duration-150 ease-in-out`} placeholder="Write your content*" />
                             <input type="text" className={`w-full py-3 px-3 outline-none rounded-md ${dark ? "bg-zinc-700 text-white placeholder-gray-400" : "bg-gray-200 text-black placeholder-gray-600"} duration-150 ease-in-out`} placeholder="LinkedIn URL (Optional)" />
                             <input type="text" className={`w-full py-3 px-3 outline-none rounded-md ${dark ? "bg-zinc-700 text-white placeholder-gray-400" : "bg-gray-200 text-black placeholder-gray-600"} duration-150 ease-in-out`} placeholder="Medium URL (Optional)" />
-                            <p onClick={createPost} className={`w-full py-2 text-center mt-2 ${dark ? "bg-white text-black" : "bg-black text-white"} font-montserrat font-semibold rounded-md duration-150 ease-in-out cursor-pointer active:opacity-70`}>{loadingMessage ? loadingMessage : "Create"}</p>
+                            <p onClick={createPost} className={`w-full py-2 text-center mt-2 ${dark ? "bg-white text-black" : "bg-black text-white"} font-montserrat font-semibold rounded-md duration-150 ease-in-out cursor-pointer active:opacity-70`}>{loadingMessage ? (<><span>{loadingMessage}</span><span className="ml-2 loading loading-spinner loading-sm"></span></>) : ("Create")}</p>
                             <p onClick={() => { setCreateVisible(false) }} className={`w-full py-2 text-center font-montserrat font-semibold cursor-pointer text-red-600`}>Cancel</p>
                         </div>
                     </div>
@@ -329,7 +332,7 @@ function page() {
                     {/* search bar */}
                     <div className={`w-full md:w-[70%] xl:w-[60%] mt-24 md:mt-32 h-auto flex justify-between items-center gap-2`}>
                         <div className={`w-full flex justify-center items-center relative`}>
-                            <input onChange={(e) => setSearchInput(e.target.value)} type="text" className={`w-full py-3 px-3 pr-8 ${dark ? "bg-zinc-700 text-white" : "bg-gray-200 text-black"} rounded-md outline-none font-dhyana text-sm`} placeholder="Enter search term" />
+                            <input onChange={(e) => setSearchInput(e.target.value)} type="text" className={`w-full py-3 px-3 pr-8 ${dark ? "bg-zinc-700 text-white" : "bg-gray-200 text-black"} rounded-full outline-none font-dhyana text-sm`} placeholder="Enter search term" />
                             <span onClick={search} className={`w-auto absolute cursor-pointer right-5 top-1/2 ${dark ? "text-white" : "text-green-600"} text-xl -translate-y-1/2`}><IoIosSearch /></span>
                         </div>
                         {/* <span className={`w-auto bg-gradient-to-r from-blue-500 to-blue-700 rounded-md md:hidden flex justify-center items-center cursor-pointer text-white active:opacity-80 duration-150 ease-in-out py-3 px-2`}><RiExpandUpDownFill /></span>
@@ -365,7 +368,7 @@ function page() {
                     {option === 'all' && <div className={`w-full ${allBlogs.length > 0 ? "block" : "hidden"} z-20 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4 px-2 md:px-5 xl:px-10 py-4`}>
                         
                         <p className={`w-full text-start font-montserrat ${dark ? "text-white" : "text-black"} font-semibold text-lg md:text-xl`}>All</p>
-                        {allBlogs && allBlogs.length > 0 && allBlogs.slice(8).map((item, index) => {
+                        {allBlogs && allBlogs.length > 0 && allBlogs.map((item, index) => {
                             return <div onClick={() => {
                                 router.push(`/user/blog/${item.uniqueId}`)
                             }} key={index} className={`w-full h-56 sm:h-60 md:h-64 lg:h-72 rounded-xl flex flex-col justify-start items-center gap-4 ${dark ? "bg-zinc-800 text-white" : "bg-gray-200 text-black"} duration-150 ease-in-out md:rounded-2xl cursor-pointer relative overflow-hidden pt-1 px-1 pb-4`}>

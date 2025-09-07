@@ -65,7 +65,7 @@ function page() {
                             <span onClick={() => setVisible(!visible)} className={`absolute top-1/2 right-5 opacity-50 text-black cursor-pointer`}>{visible ? <FaEye /> : <FaEyeSlash />}</span>
                         </div>
 
-                        <p onClick={login} className={`w-full mt-4 rounded-lg py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? loadingMessage : "Login"}</p>
+                        <p onClick={login} className={`w-full mt-4 rounded-lg py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? (<><span>{loadingMessage}</span><span className="ml-2 loading loading-spinner loading-sm"></span></>) : ("Login")}</p>
                     </div>
                 </div>
             </div>

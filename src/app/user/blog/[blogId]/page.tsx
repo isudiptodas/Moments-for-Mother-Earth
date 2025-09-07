@@ -131,7 +131,7 @@ function page() {
                         <img src={blogData?.imagePath} className={`w-full h-72 md:h-[320px] xl:h-[400px] rounded-lg lg:rounded-xl`} />
 
                         <p className={`w-full text-start mt-5 ${dark ? "text-white" : "text-black"} text-lg duration-150 ease-in-out font-montserrat font-semibold px-3`}>{blogData?.title}</p>
-                        <pre className={`w-full whitespace-pre-wrap text-start mt-5 ${dark ? "text-white" : "text-black"} text-[12px] duration-150 ease-in-out font-montserrat px-3`}>
+                        <pre className={`w-full whitespace-pre-wrap text-start mt-5 ${dark ? "text-white" : "text-black"} text-[12px] duration-150 ease-in-out font-montserrat px-3 md:px-6`}>
                             {blogData?.content}
                         </pre>
                     </div>

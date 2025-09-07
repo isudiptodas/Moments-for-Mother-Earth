@@ -128,14 +128,14 @@ function page() {
                             <input value={confirm} onChange={(e) => setConfirm(e.target.value)} type={visible ? "text" : "password"} className={`w-full font-montserrat text-black outline-none py-4 border-b-[2px] border-b-[#4a8808]`} placeholder="Confirm password*" />
                             <span onClick={() => setVisible(!visible)} className={`absolute top-1/2 right-5 opacity-50 text-black cursor-pointer`}>{visible ? <FaEye /> : <FaEyeSlash />}</span>
                         </div>
-                        <p onClick={sendOTP} className={`w-full mt-4 rounded-lg py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? loadingMessage : "Request OTP"}</p>
+                        <p onClick={sendOTP} className={`w-full mt-4 rounded-lg py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? (<><span>{loadingMessage}</span><span className="ml-2 loading loading-spinner loading-sm"></span></>) : ("Request OTP")}</p>
                     </div>
 
                     <div className={`w-full ${otpSent ? "block" : "hidden"} px-5 sm:px-14 md:px-20 md:w-1/2 h-[65vh] sm:h-[55vh] pt-5 absolute md:static overflow-y-auto scroll-bar flex flex-col justify-start items-center bg-white bottom-0 rounded-t-[180px] md:rounded-none sm:rounded-t-[250px]`}>
                         <h1 className={`w-full px-10 text-center font-genos text-2xl md:text-4xl pt-10`}>Create a new account</h1>
 
                         <input value={enteredOTP ? enteredOTP : ""} onChange={(e) => setEnteredOTP(e.target.value)} type="text" className={`w-full font-montserrat mt-8 outline-none py-4 text-black border-b-[2px] border-b-[#4a8808]`} placeholder="Enter otp" />
-                        <p onClick={createAccount} className={`w-full rounded-lg mt-4 py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? loadingMessage : "Create Account"}</p>
+                        <p onClick={createAccount} className={`w-full rounded-lg mt-4 py-2 text-center font-montserrat bg-gradient-to-r from-teal-400 via-green-500 to-green-700 text-white cursor-pointer hover:opacity-75 duration-200 ease-in-out`}>{loadingMessage ? (<><span>{loadingMessage}</span><span className="ml-2 loading loading-spinner loading-sm"></span></>) : ("Create Account")}</p>
                     </div>
                 </div>
             </div>
