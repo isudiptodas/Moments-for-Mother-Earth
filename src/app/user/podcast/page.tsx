@@ -46,7 +46,7 @@ function page() {
     const [name, setName] = useState<string | null | undefined>('');
     const [email, setEmail] = useState<string | null | undefined>('');
     const [verified, setVerified] = useState(false);
-    const [currentPodcast, setCurrentPodcast] = useState<Podcast | null>(dummy[0]);
+    const [currentPodcast, setCurrentPodcast] = useState<Podcast | null>(null);
     const [readMoreVisible, setReadMoreVisible] = useState(false);
     const [publishVisible, setPublishVisible] = useState(false);
     const { dark } = useTheme();
@@ -330,3 +330,4 @@ function page() {
 }
 
 export default page
+
