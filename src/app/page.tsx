@@ -31,9 +31,9 @@ function page() {
               [-webkit-mask-image:linear-gradient(to_top,black,transparent)]
               `}>
             </div>
-            <h1 className="w-full text-center font-cinzel z-40 text-xl md:text-2xl text-white font-semibold">Join a global community dedicated to caring for our planet,</h1>
-            <h1 className="w-full text-center font-cinzel z-40 text-xl md:text-2xl text-white font-semibold">one moment at a time</h1>
-            <div className={`w-[80%] md:w-[50%] border-t-2 border-white pt-4 z-40 md:hidden flex justify-center items-center gap-3 mt-2`}>
+            <h1 className="w-full motion-scale-in-[0.5] motion-rotate-in-[-10deg] motion-blur-in-[10px] motion-delay-[0.75s]/rotate motion-delay-[0.75s]/blur text-center font-cinzel z-40 text-xl md:text-2xl xl:text-3xl text-white font-semibold">Join a global community dedicated to caring for our planet,</h1>
+            <h1 className="w-full motion-scale-in-[0.5] motion-rotate-in-[-10deg] motion-blur-in-[10px] motion-delay-[0.75s]/rotate motion-delay-[0.75s]/blur text-center font-cinzel z-40 text-xl md:text-2xl xl:text-3xl text-white font-semibold">one moment at a time</h1>
+            <div className={`w-[80%] motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate md:w-[50%] border-t-2 border-white pt-4 z-40 md:hidden flex justify-center items-center gap-3 mt-2`}>
               <Link href='/auth/login' className={`w-auto px-3 text-white font-kalnia text-sm active:opacity-75 duration-200 ease-in-out`}>Login</Link>
               <Link href='/auth/signup' className={`w-auto px-3 py-2 rounded-full bg-white text-black font-kalnia text-sm active:opacity-75 duration-200 ease-in-out`}>Get Started</Link>
             </div>
@@ -44,12 +44,12 @@ function page() {
             <img src="/assets/logo-black.png" className={`h-5 md:h-8 cursor-pointer`} />
 
             <div className={`w-auto px-5 py-2 hidden lg:flex justify-center items-center gap-3`}>
-              <p className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>About Us</p>
-              <p className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Privacy Policy</p>
-              <p className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Terms of Usage</p>
-              <p className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Contact Us</p>
+              <Link href='/about' className={`w-auto motion-preset-expand motion-duration-1000 cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>About Us</Link>
+              <Link href='/privacy' className={`w-auto motion-preset-expand motion-duration-1000 cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Privacy Policy</Link>
+              <Link href='/terms' className={`w-auto motion-preset-expand motion-duration-1000 cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Terms of Usage</Link>
+              <Link href='/contact' className={`w-auto motion-preset-expand motion-duration-1000 cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white`}>Contact Us</Link>
             </div>
-            <div className={`w-auto px-5 py-2 hidden md:flex justify-center items-center gap-3`}>
+            <div className={`w-auto motion-scale-in-[0.5] motion-translate-x-in-[-25%] motion-translate-y-in-[25%] motion-opacity-in-[0%] motion-rotate-in-[-10deg] motion-blur-in-[5px] motion-duration-[0.35s] motion-duration-[0.53s]/scale motion-duration-[0.53s]/translate motion-duration-[0.63s]/rotate px-5 py-2 hidden md:flex justify-center items-center gap-3`}>
               <Link href='/auth/login' className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out px-3 font-kalnia text-sm text-white active:opacity-75`}>Login</Link>
               <Link href='/auth/signup' className={`w-auto cursor-pointer hover:opacity-75 duration-150 ease-in-out font-kalnia text-sm text-black bg-white px-5 py-2 rounded-full active:opacity-75`}>Get Started</Link>
             </div>
@@ -58,7 +58,7 @@ function page() {
 
         {/* intro section */}
         <div className={`w-full flex flex-col justify-start items-center h-auto pt-7 pb-12`}>
-          <img src="/assets/logo-round.png" className={`h-32 lg:h-40 hover:rotate-[360deg] duration-300 ease-in-out cursor-pointer`} />
+          <img src="/assets/logo-round.png" className={`h-32 lg:h-40 duration-300 ease-in-out cursor-pointer`} />
           <p className={`w-full text-black text-center mt-2 px-5 sm:px-10 md:px-24 font-dhyana text-[10px] md:text-sm leading-8`}>Moments for Mother Earth is more than just a website; it’s a living community. We believe that every action, no matter how small, can create a ripple of positive change. Our platform connects passionate individuals, environmental groups, and local communities to share their stories, organize events, and inspire a global movement. Whether you're planting a single tree, organizing a large-scale clean-up, or sharing your knowledge, your moments here will help create a healthier, more vibrant planet for all.</p>
         </div>
 
@@ -162,13 +162,12 @@ function page() {
         </div>
 
         {/* footer */}
-        <div className={`w-full md:w-[60%] h-auto pt-10 grid grid-cols-3 md:grid-cols-6 justify-items-center gap-4`}>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>About</Link>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Privacy</Link>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Terms</Link>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Contact</Link>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Developer</Link>
-          <Link href='' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Services</Link>
+        <div className={`w-full md:w-[60%] h-auto pt-10 grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4`}>
+          <Link href='/about' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>About</Link>
+          <Link href='/privacy' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Privacy</Link>
+          <Link href='/terms' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Terms</Link>
+          <Link href='/contact' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Contact</Link>
+          <Link href='/developer' className={`text-[12px] z-30 md:text-sm font-montserrat cursor-pointer px-3 py-1 md:py-2 bg-white text-black`}>Developer</Link>
         </div>
         <div className={`w-full h-auto flex justify-center items-center overflow-hidden`}>
           <img src="/assets/footer.jpg" className={`w-full z-10`} />
